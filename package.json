@@ -1,0 +1,17 @@
+{
+  "name": "lake-monitoring",
+  "version": "1.0.0",
+  "description": "Um projeto para monitorar a elevação dos rios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lake",
+    "monitoring",
+    "nodejs",
+    "kl25z"
+  ],
+  "author": "Vinícius Lourenço",
+  "license": "MIT"
+}
