@@ -15,6 +15,7 @@
   "author": "Vinícius Lourenço",
   "license": "MIT",
   "dependencies": {
+    "jsonfile": "^5.0.0",
     "serialport": "^7.1.5"
   },
   "devDependencies": {
