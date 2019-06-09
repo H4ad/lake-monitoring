@@ -1,7 +1,0 @@
-{
-  "thinker": {
-    "debounceAttemptsToAlert": 10,
-    "timePerThinking": 3000,
-    "securityThreshold": 0.05
-  }
-}
