@@ -13,5 +13,8 @@
     "kl25z"
   ],
   "author": "Vinícius Lourenço",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "serialport": "^7.1.5"
+  }
 }
