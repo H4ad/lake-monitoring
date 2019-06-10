@@ -1,7 +1,7 @@
 // #region Imports
 
 const SerialPort = require('serialport');
-const Readline = require('@serialport/parser-readline');
+const Readline = SerialPort.parsers.Readline;
 
 const { config: thinker } = require('./config.js');
 
@@ -17,9 +17,12 @@ const { writeFile } = require('jsonfile');
  * A classe que lida com a leitura de dados serial
  */
 const port = new SerialPort(thinker.port, {
-	...(thinker.baudRate || {}),
-	parser: new Readline({ delimiter: '\r\n' }),
+	baudRate: thinker.baudRate,
 });
+
+const parser = new Readline();
+
+port.pipe(parser);
 
 // #endregion
 
@@ -30,13 +33,14 @@ const port = new SerialPort(thinker.port, {
  */
 const initializeOpenStream = () => {
 	port.on('open', onOpenStream);
+	port.on('close', () => console.log('Fechou a conexão'));
 };
 
 /**
  * Método que inicializa a leitura dos dados serial enviados pela placa
  */
 const initializeReadDataStream = () => {
-	port.on('data', onReadDataStream);
+	parser.on('data', onReadDataStream);
 };
 
 /**
@@ -71,6 +75,7 @@ const fakeData = () => {
  * Método executado após abrir a conexão com a porta serial
  */
 const onOpenStream = () => {
+	console.log('Conexão aberta.');
 	initializeThinker();
 	initializeReadDataStream();
 };
