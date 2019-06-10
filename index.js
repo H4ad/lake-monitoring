@@ -16,7 +16,8 @@ const { writeFile } = require('jsonfile');
 /**
  * A classe que lida com a leitura de dados serial
  */
-const port = new SerialPort(config.port, {
+const port = new SerialPort(thinker.port, {
+	...(thinker.baudRate || {}),
 	parser: new Readline({ delimiter: '\r\n' }),
 });
 
@@ -84,6 +85,8 @@ const onReadDataStream = (potentiometerPower) => {
 
 	if (isNaN(power))
 		return;
+
+	console.log('Potêncial atual: ', power);
 
 	thinkerProcessMeasurement(power);
 };
@@ -286,7 +289,7 @@ const saveAlertToJson = (alertData) => {
 
 // #endregion
 
-if (config.isDebug)
+if (thinker.isDebug)
 	fakeData();
 else
 	initializeOpenStream();
